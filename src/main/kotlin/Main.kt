@@ -1,21 +1,23 @@
 package org.example
 
 import com.raylib.Jaylib.*
-import com.raylib.Raylib.*
+import org.example.logic.PieceHandler
 import org.example.objects.GameBoard
 
 
 fun main() {
-    InitWindow(750, 750, "Ludo")
+    InitWindow(750, 900, "Ludo")
 
     val gameBoard = GameBoard()
+    val pieceHandler = PieceHandler(gameBoard.cells, gameBoard.personalCells)
 
     while(!WindowShouldClose()) {
         BeginDrawing()
 
         gameBoard.draw()
         gameBoard.drawCell()
-
+        pieceHandler.draw()
+        pieceHandler.update()
 
         EndDrawing()
     }
