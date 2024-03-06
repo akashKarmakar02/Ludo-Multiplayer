@@ -1,7 +1,6 @@
 package org.example.objects
 
 import com.raylib.Jaylib.*
-import com.raylib.Raylib.*
 import com.raylib.Raylib.Color
 
 class Cell(
@@ -9,28 +8,28 @@ class Cell(
     val y: Int,
     val value: Int,
 ) {
-    var isSafe: Boolean = false
-        get() = field
+    private var _isSafe: Boolean = false
     private var color: Color = WHITE
 
-
+    val isSafe: Boolean
+        get() = _isSafe
 
     init {
         when (value) {
             4 -> {
-                isSafe = true
+                _isSafe = true
                 color = YELLOW
             }
             17 -> {
-                isSafe = true
+                _isSafe = true
                 color = DARKBLUE
             }
             30 -> {
-                isSafe = true
+                _isSafe = true
                 color = RED
             }
             43 -> {
-                isSafe = true
+                _isSafe = true
                 color = GREEN
             }
             in 53..57 -> {
@@ -47,8 +46,6 @@ class Cell(
             }
         }
     }
-
-
 
     fun draw() {
         DrawRectangle(
